@@ -22,7 +22,13 @@ class WeatherAPI {
   async getCurrentWeather({ lat, lon }: Coordinates): Promise<WeatherData> {
     console.log(`Fetching current weather for lat: ${lat}, lon: ${lon}`);
 
-    return {} as WeatherData;
+    const url = this.createUrl(`${API_CONFIG.DATA_URL}/weather`, {
+      lat: lat.toString(),
+      lon: lon.toString(),
+      units: "metric",
+    });
+
+    return this.fetchData<WeatherData>(url);
   }
 
   async getForecast({ lat, lon }: Coordinates): Promise<ForecastData> {
