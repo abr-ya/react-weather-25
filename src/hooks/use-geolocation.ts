@@ -3,24 +3,24 @@ import type { Coordinates } from "@/api/interfaces";
 
 interface GeolocationState {
   coordinates: Coordinates | null;
-  error: string | null;
+  locationError: string | null;
   isLoading: boolean;
 }
 
 export const useGeolocation = () => {
   const [locationData, setLocationData] = useState<GeolocationState>({
     coordinates: null,
-    error: null,
+    locationError: null,
     isLoading: true,
   });
 
   const getLocation = () => {
-    setLocationData((prev) => ({ ...prev, isLoading: true, error: null }));
+    setLocationData((prev) => ({ ...prev, isLoading: true, locationError: null }));
 
     if (!navigator.geolocation) {
       setLocationData({
         coordinates: null,
-        error: "Geolocation is not supported by your browser",
+        locationError: "Geolocation is not supported by your browser",
         isLoading: false,
       });
       return;
@@ -33,7 +33,7 @@ export const useGeolocation = () => {
             lat: position.coords.latitude,
             lon: position.coords.longitude,
           },
-          error: null,
+          locationError: null,
           isLoading: false,
         });
       },
@@ -56,7 +56,7 @@ export const useGeolocation = () => {
 
         setLocationData({
           coordinates: null,
-          error: errorMessage,
+          locationError: errorMessage,
           isLoading: false,
         });
       },
