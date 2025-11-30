@@ -7,3 +7,12 @@ export const API_CONFIG = {
     appid: import.meta.env.VITE_OPENWEATHER_API_KEY,
   },
 };
+
+export const defaultOptions = {
+  queries: {
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes
+    retry: false,
+    refetchOnWindowFocus: false,
+  },
+};
