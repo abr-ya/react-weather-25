@@ -34,11 +34,23 @@ class WeatherAPI {
   async getForecast({ lat, lon }: Coordinates): Promise<ForecastData> {
     console.log(`Fetching forecast for lat: ${lat}, lon: ${lon}`);
 
-    return { list: [], city: { name: "", country: "", sunrise: 0, sunset: 0 } };
+    const url = this.createUrl(`${API_CONFIG.DATA_URL}/forecast`, {
+      lat: lat.toString(),
+      lon: lon.toString(),
+      units: "metric",
+    });
+
+    return this.fetchData<ForecastData>(url);
   }
 
-  async reverseGeocode(): Promise<GeocodingResponse[]> {
-    return [];
+  async reverseGeocode({ lat, lon }: Coordinates): Promise<GeocodingResponse[]> {
+    const url = this.createUrl(`${API_CONFIG.GEO_URL}/reverse`, {
+      lat: lat.toString(),
+      lon: lon.toString(),
+      limit: "1",
+    });
+
+    return this.fetchData<GeocodingResponse[]>(url);
   }
 }
 
