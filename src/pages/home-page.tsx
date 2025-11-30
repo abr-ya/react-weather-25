@@ -1,9 +1,17 @@
 import { Button } from "@/components";
+import { useGeolocation } from "@/hooks";
 import { RefreshCw } from "lucide-react";
 
 export const HomePage = () => {
+  const { coordinates, getLocation } = useGeolocation();
+
   const handleRefresh = () => {
     console.log("Refresh button clicked");
+    getLocation();
+    if (coordinates) {
+      console.log(`Current coordinates: lat=${coordinates.lat}, lon=${coordinates.lon}`);
+      // Reload weather data based on new coordinates
+    }
   };
 
   return (
