@@ -1,9 +1,11 @@
 import { Button, LoadingSkeleton, LocationErrorAlert } from "@/components";
-import { useGeolocation } from "@/hooks";
+import { useGeolocation, useWeatherQuery } from "@/hooks";
 import { RefreshCw } from "lucide-react";
 
 export const HomePage = () => {
   const { coordinates, getLocation, isLoading, locationError } = useGeolocation();
+
+  const weatherQuery = useWeatherQuery(coordinates);
 
   const handleRefresh = () => {
     console.log("Refresh button clicked");
@@ -11,12 +13,15 @@ export const HomePage = () => {
     if (coordinates) {
       console.log(`Current coordinates: lat=${coordinates.lat}, lon=${coordinates.lon}`);
       // Reload weather data based on new coordinates
+      weatherQuery.refetch();
     }
   };
 
   if (isLoading) return <LoadingSkeleton />;
 
   if (locationError || !coordinates) return <LocationErrorAlert handleRefresh={handleRefresh} />;
+
+  console.log(weatherQuery.data);
 
   return (
     <div className="space-y-4">
