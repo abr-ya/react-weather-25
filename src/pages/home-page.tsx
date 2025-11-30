@@ -11,7 +11,7 @@ import { useForecastQuery, useGeolocation, useReverseGeocodeQuery, useWeatherQue
 import { RefreshCw } from "lucide-react";
 
 export const HomePage = () => {
-  const { coordinates, getLocation, isLoading, locationError } = useGeolocation();
+  const { coordinates, getLocation, isLoading: locationLoading, locationError } = useGeolocation();
 
   const weatherQuery = useWeatherQuery(coordinates);
   const forecastQuery = useForecastQuery(coordinates);
@@ -29,9 +29,12 @@ export const HomePage = () => {
     }
   };
 
-  if (isLoading || !weatherQuery.data || !forecastQuery.data) return <LoadingSkeleton />;
+  const isDataLoading = weatherQuery.isFetching || forecastQuery.isFetching || locationQuery.isFetching;
 
-  if (locationError || !coordinates) return <LocationErrorAlert handleRefresh={handleRefresh} />;
+  if (locationLoading || !weatherQuery.data || !forecastQuery.data) return <LoadingSkeleton />;
+
+  if (locationError || !coordinates)
+    return <LocationErrorAlert handleRefresh={handleRefresh} isLoading={isDataLoading} />;
 
   console.log(weatherQuery.data);
 
@@ -41,8 +44,8 @@ export const HomePage = () => {
       {/* FavoriteCities */}
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold tracking-tight">My Location</h1>
-        <Button variant="outline" size="icon" onClick={handleRefresh} disabled={false}>
-          <RefreshCw className={"h-4 w-4 "} />
+        <Button variant="outline" size="icon" onClick={handleRefresh} disabled={isDataLoading}>
+          <RefreshCw className={`h-4 w-4 ${isDataLoading ? "animate-spin" : ""}`} />
         </Button>
       </div>
       <div className="grid gap-6">
