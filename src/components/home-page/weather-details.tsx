@@ -1,3 +1,9 @@
+import { DataCard } from "..";
+
 export const WeatherDetails = () => {
-  return <div>WeatherDetails</div>;
+  return (
+    <DataCard title="Weather Details">
+      <div>WeatherDetails</div>
+    </DataCard>
+  );
 };

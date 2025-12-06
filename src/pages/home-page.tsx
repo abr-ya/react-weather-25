@@ -36,8 +36,6 @@ export const HomePage = () => {
   if (locationError || !coordinates)
     return <LocationErrorAlert handleRefresh={handleRefresh} isLoading={isDataLoading} />;
 
-  console.log(weatherQuery.data);
-
   return (
     <div className="space-y-4">
       <FavoriteCities />

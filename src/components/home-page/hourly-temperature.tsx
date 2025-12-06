@@ -1,3 +1,9 @@
+import { DataCard } from "../layout/data-card";
+
 export const HourlyTemperature = () => {
-  return <div>HourlyTemperature</div>;
+  return (
+    <DataCard title="Today's Temperature">
+      <div>Hourly Temperature Chart</div>
+    </DataCard>
+  );
 };

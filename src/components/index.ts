@@ -5,6 +5,7 @@ export { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "./ui/tooltip";
 export { Skeleton } from "./ui/skeleton";
 
+export { DataCard } from "./layout/data-card";
 export { Layout } from "./layout/layout";
 
 export { LocationErrorAlert } from "./dialogs/location-error-alert";
