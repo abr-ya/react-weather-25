@@ -16,4 +16,5 @@ export { CurrentWeather } from "./home-page/current-weather";
 export { HourlyTemperature } from "./home-page/hourly-temperature";
 export { WeatherDetails } from "./home-page/weather-details";
 export { WeatherForecast } from "./home-page/weather-forecast";
-// export { FavoriteCities } from "./home-page/favorite-cities";
+export { FavoriteCities } from "./home-page/favorite-cities";
+export { MyLocation } from "./home-page/my-location";
