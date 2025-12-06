@@ -44,7 +44,9 @@ export const HomePage = () => {
       <MyLocation handleRefresh={handleRefresh} isLoading={isDataLoading} />
       <div className="grid gap-6">
         <div className="flex flex-col lg:flex-row gap-4">
-          <CurrentWeather />
+          {weatherQuery.data ? (
+            <CurrentWeather data={weatherQuery.data} locationName={locationQuery.data?.[0]} />
+          ) : null}
           <HourlyTemperature />
         </div>
 
