@@ -1,5 +1,6 @@
 import {
   CurrentWeather,
+  DataEmpty,
   FavoriteCities,
   HourlyTemperature,
   LoadingSkeleton,
@@ -44,12 +45,14 @@ export const HomePage = () => {
         <div className="flex flex-col lg:flex-row gap-4">
           {weatherQuery.data ? (
             <CurrentWeather data={weatherQuery.data} locationName={locationQuery.data?.[0]} />
-          ) : null}
+          ) : (
+            <DataEmpty />
+          )}
           <HourlyTemperature />
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 items-start">
-          <WeatherDetails />
+          {weatherQuery.data ? <WeatherDetails data={weatherQuery.data} /> : <DataEmpty />}
           <WeatherForecast />
         </div>
       </div>
