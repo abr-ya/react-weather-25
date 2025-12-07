@@ -19,3 +19,6 @@ export { WeatherDetails } from "./home-page/weather-details";
 export { WeatherForecast } from "./home-page/weather-forecast";
 export { FavoriteCities } from "./home-page/favorite-cities";
 export { MyLocation } from "./home-page/my-location";
+
+// Charts
+export { HourlyTemperatureChart } from "./charts/hourly-temperature-chart";
