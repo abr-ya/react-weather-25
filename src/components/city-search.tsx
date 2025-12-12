@@ -12,11 +12,12 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export const CitySearch = () => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { data: locations, isLoading } = useLocationSearch(query);
 
@@ -25,8 +26,8 @@ export const CitySearch = () => {
 
     console.log(lat, lon, name);
 
-    // setOpen(false);
-    // navigate(`/city/${name}?lat=${lat}&lon=${lon}`);
+    setOpen(false);
+    navigate(`/city/${name}?lat=${lat}&lon=${lon}`);
   };
 
   const favorites = []; // Load favorite cities from state or context
@@ -49,10 +50,10 @@ export const CitySearch = () => {
             {query.length > 2 && !isLoading && <CommandEmpty>No cities found.</CommandEmpty>}
 
             {/* Favorites Section */}
-            {favorites.length}
+            {favorites.length || "No favorites yet."}
 
             {/* Search History Section */}
-            {history.length}
+            {history.length || "No recent searches."}
 
             {/* Search Results */}
             <CommandSeparator />

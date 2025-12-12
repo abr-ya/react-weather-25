@@ -15,7 +15,7 @@ const App = () => (
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/city/:cityName" element={<CityPage />} />
+            <Route path="/city/:city" element={<CityPage />} />
           </Routes>
         </Layout>
       </ThemeProvider>
