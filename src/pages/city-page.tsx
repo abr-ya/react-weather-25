@@ -1,3 +1,4 @@
+import { CurrentWeather, DataEmpty, HourlyTemperature, WeatherDetails, WeatherForecast } from "@/components";
 import { LoadingSkeleton } from "@/components/loading-skeleton";
 import { useForecastQuery, useWeatherQuery } from "@/hooks";
 import { useParams, useSearchParams } from "react-router-dom";
@@ -13,14 +14,13 @@ export const CityPage = () => {
   const weatherQuery = useWeatherQuery(coordinates);
   const forecastQuery = useForecastQuery(coordinates);
 
-  if (weatherQuery.error || forecastQuery.error) {
-    return <div>Error loading data.</div>; // todo: replace with error component
-  }
+  if (!city) return <div>Error: City not specified.</div>; // todo: replace with error component
+
+  if (weatherQuery.error || forecastQuery.error) return <div>Error loading data.</div>; // todo: replace with error component
 
   const isDataLoading = weatherQuery.isFetching || forecastQuery.isFetching;
-  if (isDataLoading) return <LoadingSkeleton />;
 
-  console.log(weatherQuery.data, forecastQuery.data);
+  if (isDataLoading) return <LoadingSkeleton />;
 
   return (
     <div className="space-y-4">
@@ -30,10 +30,14 @@ export const CityPage = () => {
       </div>
 
       <div className="grid gap-6">
-        todo: CurrentWeather HourlyTemperature
+        <div className="flex flex-col lg:flex-row gap-4">
+          {weatherQuery.data ? <CurrentWeather data={weatherQuery.data} /> : <DataEmpty />}
+          <HourlyTemperature />
+        </div>
+
         <div className="grid gap-6 md:grid-cols-2 items-start">
-          <div>todo: WeatherDetails</div>
-          <div>todo: WeatherForecast</div>
+          {weatherQuery.data ? <WeatherDetails data={weatherQuery.data} /> : <DataEmpty />}
+          <WeatherForecast />
         </div>
       </div>
     </div>
