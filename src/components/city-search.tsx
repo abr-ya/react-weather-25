@@ -13,25 +13,33 @@ import {
 } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useSearchHistory } from "@/hooks";
 
 export const CitySearch = () => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
+  const { addToHistory, history } = useSearchHistory();
 
   const { data: locations, isLoading } = useLocationSearch(query);
 
   const handleSelect = (cityData: string) => {
-    const [lat, lon, name] = cityData.split("|");
+    const [lat, lon, name, country] = cityData.split("|");
 
-    console.log(lat, lon, name);
+    // Add to search history
+    addToHistory.mutate({
+      query,
+      name,
+      lat: parseFloat(lat),
+      lon: parseFloat(lon),
+      country,
+    });
 
     setOpen(false);
     navigate(`/city/${name}?lat=${lat}&lon=${lon}`);
   };
 
   const favorites = []; // Load favorite cities from state or context
-  const history = []; // Load search history from state or context
 
   return (
     <>
@@ -53,7 +61,7 @@ export const CitySearch = () => {
             {favorites.length || "No favorites yet."}
 
             {/* Search History Section */}
-            {history.length || "No recent searches."}
+            {history.length ? <div>In history: {history.length}</div> : "No recent searches."}
 
             {/* Search Results */}
             <CommandSeparator />
