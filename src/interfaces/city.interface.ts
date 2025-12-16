@@ -12,3 +12,7 @@ export interface HistoryItem extends ICityItem {
   state?: string;
   searchedAt: number;
 }
+
+export interface IFavoriteCity extends ICityItem {
+  addedAt: number;
+}

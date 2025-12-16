@@ -1,6 +1,14 @@
-import { CurrentWeather, DataEmpty, HourlyTemperature, WeatherDetails, WeatherForecast } from "@/components";
+import {
+  CurrentWeather,
+  DataEmpty,
+  HourlyTemperature,
+  LikeButton,
+  WeatherDetails,
+  WeatherForecast,
+} from "@/components";
 import { LoadingSkeleton } from "@/components/loading-skeleton";
 import { useForecastQuery, useWeatherQuery } from "@/hooks";
+import { getLatLonCountry } from "@/utils/normalize";
 import { useParams, useSearchParams } from "react-router-dom";
 
 export const CityPage = () => {
@@ -26,7 +34,11 @@ export const CityPage = () => {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold tracking-tight">{city}</h1>
-        <div className="flex gap-2">todo: add buttons for favorite</div>
+        {weatherQuery.data ? (
+          <div className="flex gap-2">
+            <LikeButton data={getLatLonCountry(weatherQuery.data)} name={city} />
+          </div>
+        ) : null}
       </div>
 
       <div className="grid gap-6">

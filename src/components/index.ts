@@ -15,6 +15,7 @@ export { LocationErrorAlert } from "./dialogs/location-error-alert";
 
 export { CitySearch } from "./city-search/city-search";
 export { LoadingSkeleton } from "./loading-skeleton";
+export { LikeButton } from "./like-button";
 
 // Home Page Components
 export { CurrentWeather } from "./home-page/current-weather";
