@@ -13,7 +13,7 @@ export { Layout } from "./layout/layout";
 // Dialogs and Alerts
 export { LocationErrorAlert } from "./dialogs/location-error-alert";
 
-export { CitySearch } from "./city-search";
+export { CitySearch } from "./city-search/city-search";
 export { LoadingSkeleton } from "./loading-skeleton";
 
 // Home Page Components

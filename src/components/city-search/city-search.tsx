@@ -14,6 +14,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useSearchHistory } from "@/hooks";
+import { HistoryGroup } from "./history-group";
+import { FavoritesGroup } from "./favorites-group";
 
 export const CitySearch = () => {
   const [open, setOpen] = useState(false);
@@ -58,10 +60,12 @@ export const CitySearch = () => {
             {query.length > 2 && !isLoading && <CommandEmpty>No cities found.</CommandEmpty>}
 
             {/* Favorites Section */}
-            {favorites.length || "No favorites yet."}
+            <CommandSeparator />
+            {favorites.length ? <FavoritesGroup /> : "No favorites yet."}
 
             {/* Search History Section */}
-            {history.length ? <div>In history: {history.length}</div> : "No recent searches."}
+            <CommandSeparator />
+            {history.length ? <HistoryGroup data={history} /> : "No recent searches."}
 
             {/* Search Results */}
             <CommandSeparator />
