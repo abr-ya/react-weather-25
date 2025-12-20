@@ -1,17 +1,17 @@
 import {
   CurrentWeather,
   DataEmpty,
-  FavoriteCities,
   HourlyTemperature,
   LoadingSkeleton,
   LocationErrorAlert,
   MyLocation,
   WeatherDetails,
   WeatherForecast,
+  WithFavouriteLayout,
 } from "@/components";
 import { useForecastQuery, useGeolocation, useReverseGeocodeQuery, useWeatherQuery } from "@/hooks";
 
-export const HomePage = () => {
+const HomePageMainPart = () => {
   const { coordinates, getLocation, isLoading: locationLoading, locationError } = useGeolocation();
 
   const weatherQuery = useWeatherQuery(coordinates);
@@ -38,8 +38,7 @@ export const HomePage = () => {
     return <LocationErrorAlert handleRefresh={handleRefresh} isLoading={isDataLoading} />;
 
   return (
-    <div className="space-y-4">
-      <FavoriteCities />
+    <>
       <MyLocation handleRefresh={handleRefresh} isLoading={isDataLoading} />
       <div className="grid gap-6">
         <div className="flex flex-col lg:flex-row gap-4">
@@ -56,6 +55,12 @@ export const HomePage = () => {
           <WeatherForecast />
         </div>
       </div>
-    </div>
+    </>
   );
 };
+
+export const HomePage = () => (
+  <WithFavouriteLayout>
+    <HomePageMainPart />
+  </WithFavouriteLayout>
+);

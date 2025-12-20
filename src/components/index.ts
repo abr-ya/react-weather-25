@@ -13,6 +13,7 @@ export {
   CommandShortcut,
   CommandSeparator,
 } from "./ui/command";
+export { ScrollArea, ScrollBar } from "./ui/scroll-area";
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "./ui/tooltip";
 export { Skeleton } from "./ui/skeleton";
 
@@ -20,6 +21,7 @@ export { Skeleton } from "./ui/skeleton";
 export { DataCard } from "./layout/data-card";
 export { DataEmpty } from "./layout/data-empty";
 export { Layout } from "./layout/layout";
+export { WithFavouriteLayout } from "./layout/with-favourite-layout";
 
 // Dialogs and Alerts
 export { LocationErrorAlert } from "./dialogs/location-error-alert";
