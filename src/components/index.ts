@@ -26,7 +26,9 @@ export { WithFavouriteLayout } from "./layout/with-favourite-layout";
 // Dialogs and Alerts
 export { LocationErrorAlert } from "./dialogs/location-error-alert";
 
+// Common Components
 export { CitySearch } from "./city-search/city-search";
+export { FavoriteCities } from "./favorite/favorite-cities";
 export { LoadingSkeleton } from "./loading-skeleton";
 export { LikeButton } from "./like-button";
 
@@ -35,7 +37,6 @@ export { CurrentWeather } from "./home-page/current-weather";
 export { HourlyTemperature } from "./home-page/hourly-temperature";
 export { WeatherDetails } from "./home-page/weather-details";
 export { WeatherForecast } from "./home-page/weather-forecast";
-export { FavoriteCities } from "./home-page/favorite-cities";
 export { MyLocation } from "./home-page/my-location";
 
 // Charts
