@@ -45,8 +45,8 @@ export const useSearchHistory = () => {
   });
 
   return {
-    history: historyQuery.data ?? [],
     addToHistory,
     clearHistory,
+    historyQuery,
   };
 };

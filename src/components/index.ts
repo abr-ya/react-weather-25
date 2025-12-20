@@ -2,6 +2,17 @@
 export { Alert, AlertTitle, AlertDescription } from "./ui/alert";
 export { Button, buttonVariants } from "./ui/button";
 export { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+export {
+  Command,
+  CommandDialog,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandShortcut,
+  CommandSeparator,
+} from "./ui/command";
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "./ui/tooltip";
 export { Skeleton } from "./ui/skeleton";
 

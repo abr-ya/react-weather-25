@@ -21,7 +21,7 @@ export const CitySearch = () => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
-  const { addToHistory, history } = useSearchHistory();
+  const { addToHistory, historyQuery } = useSearchHistory();
   const { favorites } = useFavorites();
 
   const { data: locations, isLoading } = useLocationSearch(query);
@@ -42,6 +42,8 @@ export const CitySearch = () => {
     navigate(`/city/${name}?lat=${lat}&lon=${lon}`);
   };
 
+  console.log("favorites:", favorites);
+
   return (
     <>
       <Button
@@ -60,11 +62,11 @@ export const CitySearch = () => {
 
             {/* Favorites Section */}
             <CommandSeparator />
-            {favorites.length ? <FavoritesGroup data={favorites} /> : "No favorites yet."}
+            {favorites.length ? <FavoritesGroup data={favorites} selectHandler={handleSelect} /> : "No favorites yet."}
 
             {/* Search History Section */}
             <CommandSeparator />
-            {history.length ? <HistoryGroup data={history} /> : "No recent searches yet."}
+            {historyQuery.data?.length ? <HistoryGroup data={historyQuery.data} /> : "No recent searches yet."}
 
             {/* Search Results */}
             <CommandSeparator />
