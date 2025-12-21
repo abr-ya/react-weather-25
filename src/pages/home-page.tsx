@@ -1,12 +1,12 @@
 import {
   CurrentWeather,
   DataEmpty,
+  Forecast,
   HourlyTemperature,
   LoadingSkeleton,
   LocationErrorAlert,
   MyLocation,
   WeatherDetails,
-  WeatherForecast,
   WithFavouriteLayout,
 } from "@/components";
 import { useForecastQuery, useGeolocation, useReverseGeocodeQuery, useWeatherQuery } from "@/hooks";
@@ -52,7 +52,7 @@ const HomePageMainPart = () => {
 
         <div className="grid gap-6 md:grid-cols-2 items-start">
           {weatherQuery.data ? <WeatherDetails data={weatherQuery.data} /> : <DataEmpty />}
-          <WeatherForecast />
+          {forecastQuery.data ? <Forecast data={forecastQuery.data} /> : <DataEmpty />}
         </div>
       </div>
     </>

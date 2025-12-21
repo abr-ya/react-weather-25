@@ -43,14 +43,16 @@ export interface WeatherData {
   dt: number;
 }
 
-export interface ForecastData {
-  list: Array<{
-    dt: number;
-    main: WeatherData["main"];
-    weather: WeatherData["weather"];
-    wind: WeatherData["wind"];
-    dt_txt: string;
-  }>;
+export interface IForecastListItem {
+  dt: number;
+  main: WeatherData["main"];
+  weather: WeatherData["weather"];
+  wind: WeatherData["wind"];
+  dt_txt: string;
+}
+
+export interface IForecastData {
+  list: Array<IForecastListItem>;
   city: {
     name: string;
     country: string;

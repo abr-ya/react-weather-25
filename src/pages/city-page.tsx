@@ -1,11 +1,4 @@
-import {
-  CurrentWeather,
-  DataEmpty,
-  HourlyTemperature,
-  LikeButton,
-  WeatherDetails,
-  WeatherForecast,
-} from "@/components";
+import { CurrentWeather, DataEmpty, Forecast, HourlyTemperature, LikeButton, WeatherDetails } from "@/components";
 import { LoadingSkeleton } from "@/components/loading-skeleton";
 import { useForecastQuery, useWeatherQuery } from "@/hooks";
 import { getLatLonCountry } from "@/utils/normalize";
@@ -49,7 +42,7 @@ export const CityPage = () => {
 
         <div className="grid gap-6 md:grid-cols-2 items-start">
           {weatherQuery.data ? <WeatherDetails data={weatherQuery.data} /> : <DataEmpty />}
-          <WeatherForecast />
+          {forecastQuery.data ? <Forecast data={forecastQuery.data} /> : <DataEmpty />}
         </div>
       </div>
     </div>

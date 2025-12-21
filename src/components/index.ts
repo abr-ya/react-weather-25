@@ -36,7 +36,7 @@ export { LikeButton } from "./like-button";
 export { CurrentWeather } from "./home-page/current-weather";
 export { HourlyTemperature } from "./home-page/hourly-temperature";
 export { WeatherDetails } from "./home-page/weather-details";
-export { WeatherForecast } from "./home-page/weather-forecast";
+export { Forecast } from "./home-page/forecast";
 export { MyLocation } from "./home-page/my-location";
 
 // Charts
