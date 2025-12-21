@@ -1,13 +1,13 @@
 import type { WeatherData } from "@/api/interfaces";
 import { DataCard } from "..";
-import { Compass, Gauge, Sunrise, Sunset } from "lucide-react";
-import { formatTime } from "@/utils/helpers";
+import { Clock, Compass, Gauge, Sunrise, Sunset } from "lucide-react";
+import { formatTime, getDayDuration } from "@/utils/helpers";
 
 interface WeatherDetailsProps {
   data: WeatherData;
 }
 
-export const WeatherDetails = ({ data: { main, sys, wind } }: WeatherDetailsProps) => {
+export const WeatherDetails = ({ data: { dt, main, name, sys, wind } }: WeatherDetailsProps) => {
   const details = [
     {
       title: "Sunrise",
@@ -21,6 +21,12 @@ export const WeatherDetails = ({ data: { main, sys, wind } }: WeatherDetailsProp
       icon: Sunset,
       color: "text-blue-500",
     },
+    {
+      title: "Day Duration",
+      value: getDayDuration(sys.sunrise, sys.sunset),
+      icon: Clock,
+      color: "text-yellow-500",
+    },
     // todo: add wind direction titles
     {
       title: "Wind Direction",
@@ -28,6 +34,7 @@ export const WeatherDetails = ({ data: { main, sys, wind } }: WeatherDetailsProp
       icon: Compass,
       color: "text-green-500",
     },
+    // todo: add wind speed
     {
       title: "Pressure",
       value: `${main.pressure} hPa`,
@@ -38,7 +45,8 @@ export const WeatherDetails = ({ data: { main, sys, wind } }: WeatherDetailsProp
 
   return (
     <DataCard title="Weather Details">
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="mb-2">{`${name}${dt ? `, ${formatTime(dt, "dd.MM.yyyy HH:mm")}` : ""}`}</div>
+      <div className="grid gap-6 sm:grid-cols-3">
         {details.map((detail) => (
           <div key={detail.title} className="flex items-center gap-3 rounded-lg border p-4">
             <detail.icon className={`h-5 w-5 ${detail.color}`} />
